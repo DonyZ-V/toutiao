@@ -83,7 +83,6 @@ def parse_page_detail_1(html, url):
     print(title)
     images_pattern = re.compile('img src=&quot;(.*?)&quot;', re.S)
     result = re.findall(images_pattern, html)
-    print(result)
     if result:
             for image in result: download_image(image)
             return {
@@ -113,7 +112,7 @@ def download_image(url):
 
 
 def save_image(content):
-    file_path = '{0}/{1}.{2}'.format(os.getcwd() + '/images', md5(content).hexdigest(), 'jpg')
+    file_path = '{0}/{1}.{2}'.format(os.getcwd() + IMAGE_PATH, md5(content).hexdigest(), 'jpg')
     if not os.path.exists(file_path):
         with open(file_path, 'wb') as f:
             f.write(content)
